@@ -103,7 +103,7 @@ function buildAndShowHomeHTML (categories) {
       // TODO: STEP 2: Here, call chooseRandomCategory, passing it retrieved 'categories'
       // Pay attention to what type of data that function returns vs what the chosenCategoryShortName
       // variable's name implies it expects.
-       var chosenCategoryShortName = chooseRandomCategory(categories).short_name;
+       var chosenCategoryShortName = "'"+chooseRandomCategory(categories).short_name+"'";
        console.log("chosenCategoryShortName =" + chosenCategoryShortName);
 
 
@@ -137,6 +137,7 @@ function buildAndShowHomeHTML (categories) {
 function chooseRandomCategory (categories) {
   // Choose a random index into the array (from 0 inclusively until array length (exclusively))
   var randomArrayIndex = Math.floor(Math.random() * categories.length);
+
   console.log("randomArrayIndex = "+ randomArrayIndex);
   // return category object with that randomArrayIndex
   return categories[randomArrayIndex];
@@ -156,6 +157,7 @@ dc.loadMenuCategories = function () {
 // 'categoryShort' is a short_name for a category
 dc.loadMenuItems = function (categoryShort) {
   showLoading("#main-content");
+  console.log("categoryShort ="+categoryShort);
   $ajaxUtils.sendGetRequest(
     menuItemsUrl + categoryShort,
     buildAndShowMenuItemsHTML);
